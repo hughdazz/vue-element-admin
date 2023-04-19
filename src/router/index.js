@@ -40,6 +40,36 @@ import nestedRouter from './modules/nested'
  */
 export const constantRoutes = [
   {
+    path: '/apply',
+    component: Layout,
+    redirect: 'noRedirect',
+    name: 'Apply',
+    meta: {
+      title: '申请管理',
+      icon: 'bug'
+    },
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/apply/index'),
+        name: 'Apply',
+        meta: { title: '申请管理', icon: 'bug' }
+      },
+      {
+        path: 'view/:id(\\d+)',
+        component: () => import('@/views/apply/view'),
+        name: 'ViewApply',
+        meta: { title: '查看申请', icon: 'bug' }
+      },
+      {
+        path: 'edit/:id(\\d+)',
+        component: () => import('@/views/apply/edit'),
+        name: 'EditApply',
+        meta: { title: '编辑申请', icon: 'bug' }
+      }
+    ]
+  },
+  {
     path: '/redirect',
     component: Layout,
     hidden: true,
@@ -382,7 +412,6 @@ export const asyncRoutes = [
       }
     ]
   },
-
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
 ]
